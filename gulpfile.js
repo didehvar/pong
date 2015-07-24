@@ -25,6 +25,13 @@ gulp.task('js', function() {
     .on('error', plugins.util.log);
 });
 
+gulp.task('js:traceur', function() {
+  return gulp.src(plugins.traceur.RUNTIME_PATH)
+    .pipe(plugins.concat('traceur-runtime.min.js'))
+    .pipe(plugins.uglify())
+    .pipe(gulp.dest('build/js'));
+});
+
 gulp.task('vendor', function() {
   return gulp.src('app/js/vendor/*.js')
     .pipe(plugins.concat('vendor.min.js'))
@@ -52,6 +59,6 @@ gulp.task('watch', function() {
   gulp.watch('app/img/*.*', ['img']);
 });
 
-gulp.task('build', ['html', 'js', 'vendor', 'img']);
+gulp.task('build', ['html', 'js', 'js:traceur', 'vendor', 'img']);
 
 gulp.task('default', ['connect', 'watch']);
