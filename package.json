@@ -1,0 +1,15 @@
+{
+  "name": "pong",
+  "version": "0.0.1",
+  "description": "Pong.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/didehvar/pong.git"
+  },
+  "author": "James Didehvar <james@didehvar.com> (http://didehvar.co.uk)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/didehvar/pong/issues"
+  },
+  "homepage": "https://github.com/didehvar/pong#readme"
+}
