@@ -11,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/didehvar/pong/issues"
   },
-  "homepage": "https://github.com/didehvar/pong#readme"
+  "homepage": "https://github.com/didehvar/pong#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
 }
