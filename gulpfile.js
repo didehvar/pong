@@ -18,7 +18,8 @@ gulp.task('html', function() {
 gulp.task('js', function() {
   return gulp.src('app/js/*.js')
     .pipe(plugins.traceur())
-    .pipe(plugins.rename({ extname: '.min.js' }))
+    .pipe(plugins.concat('pong.min.js'))
+    .pipe(plugins.uglify())
     .pipe(gulp.dest('build/js'))
     .pipe(plugins.connect.reload())
     .on('error', plugins.util.log);
@@ -26,9 +27,8 @@ gulp.task('js', function() {
 
 gulp.task('vendor', function() {
   return gulp.src('app/js/vendor/*.js')
-    .pipe(plugins.concat('vendor.js'))
+    .pipe(plugins.concat('vendor.min.js'))
     .pipe(plugins.uglify())
-    .pipe(plugins.rename({ extname: '.min.js' }))
     .pipe(gulp.dest('build/js'))
     .pipe(plugins.connect.reload())
     .on('error', plugins.util.log);
