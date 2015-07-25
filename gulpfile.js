@@ -19,6 +19,7 @@ gulp.task('js', function() {
   return gulp.src([
       'app/js/sprite.js',
       'app/js/left-paddle.js',
+      'app/js/right-paddle.js',
       'app/js/*.js'
     ])
     .pipe(plugins.traceur())

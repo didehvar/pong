@@ -27,11 +27,9 @@ window.onload = function() {
   function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    cursors = game.input.keyboard.createCursorKeys();
-
-    leftPaddle = new Sprite(game, cursors, 50, this.game.world.centerY, paddleBitmap);
-    rightPaddle = new Sprite(game, cursors, this.game.world.width - 50, this.game.world.centerY, paddleBitmap);
-    ball = new Sprite(game, cursors, this.game.world.centerX, this.game.world.centerY, ballBitmap);
+    leftPaddle = new LeftPaddle(game, 50, this.game.world.centerY, paddleBitmap);
+    rightPaddle = new RightPaddle(game, this.game.world.width - 50, this.game.world.centerY, paddleBitmap);
+    ball = new Sprite(game, this.game.world.centerX, this.game.world.centerY, ballBitmap);
   }
 
   function update() {

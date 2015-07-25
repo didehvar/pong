@@ -1,7 +1,10 @@
 class Sprite {
-  constructor(game, cursors, x, y, bitmap) {
+  static get PADDLE_SPEED() {
+    return 200;
+  }
+
+  constructor(game, x, y, bitmap) {
     this.game = game;
-    this.cursors = cursors;
 
     this.sprite = this.game.add.sprite(x, y, bitmap);
     this.sprite.anchor.set(0.5, 0.5);
