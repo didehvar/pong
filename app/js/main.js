@@ -27,6 +27,10 @@ window.onload = function() {
   }
 
   function preload() {
+    game.scale.pageAlignHorizontally = true;
+    game.scale.pageAlignVertically = true;
+    game.scale.refresh();
+
     paddleBitmap = game.add.bitmapData(4, 40);
     paddleBitmap.ctx.beginPath();
     paddleBitmap.ctx.rect(0, 0, paddleBitmap.width, paddleBitmap.height);
