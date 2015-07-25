@@ -2,6 +2,8 @@
 window.onload = function() {
   var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
+  var SCORE_TO_WIN = 5;
+
   var paddleLeft;
   var paddleRight;
   var ball;
@@ -12,6 +14,9 @@ window.onload = function() {
 
   var scoreLeft;
   var scoreRight;
+
+  var winner;
+  var restart;
 
   function updateScore(score) {
     if (score == 'left') {
@@ -55,6 +60,39 @@ window.onload = function() {
       boundsAlignH: 'left'
     });
     scoreRight.setTextBounds(game.world.width / 2 + 10, 10, game.world.width, 32);
+
+    winner = game.add.text(0, 0, 'WINNER\n', {
+      fontSize: '64px',
+      fill: '#fff',
+      boundsAlignH: 'center',
+      boundsAlignV: 'middle',
+      align: 'center'
+    });
+    winner.visible = false;
+    winner.setTextBounds(0, 0, game.world.width, game.world.height);
+
+    restart = game.add.text(0, 0, 'Press ESC to restart', {
+      fontSize: '24px',
+      fill: '#fff',
+      boundsAlignH: 'center'
+    });
+    restart.visible = false;
+    restart.setTextBounds(0, game.world.height - 64, game.world.width, 64);
+
+    game.input.keyboard.onDownCallback = function(event) {
+      if (!game.paused || event.keyCode != Phaser.Keyboard.ESC) {
+        return;
+      }
+
+      winner.visible = false;
+      winner.text = 'WINNER\n';
+      restart.visible = false;
+
+      scoreLeft.text = 0;
+      scoreRight.text = 0;
+
+      game.paused = false;
+    };
   }
 
   function update() {
@@ -62,5 +100,20 @@ window.onload = function() {
     paddleRight.update(ball);
 
     ball.update([paddleLeft, paddleRight]);
+
+    checkWin();
+    function checkWin() {
+      if (scoreLeft.text >= SCORE_TO_WIN) {
+        winner.text += 'LEFT';
+      } else if (scoreRight.text >= SCORE_TO_WIN) {
+        winner.text += 'RIGHT';
+      } else {
+        return;
+      }
+
+      winner.visible = true;
+      restart.visible = true;
+      game.paused = true;
+    }
   }
 };
