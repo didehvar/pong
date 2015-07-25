@@ -15,7 +15,7 @@ class Sprite {
 
   update(collide) {
     for (var i = 0; i < collide.length; i++) {
-      this.game.physics.arcade.collide(this.sprite, collide[i]);
+      this.game.physics.arcade.collide(this.sprite, collide[i].sprite);
     }
   }
 }

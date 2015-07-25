@@ -29,7 +29,7 @@ window.onload = function() {
 
     leftPaddle = new LeftPaddle(game, 50, this.game.world.centerY, paddleBitmap);
     rightPaddle = new RightPaddle(game, this.game.world.width - 50, this.game.world.centerY, paddleBitmap);
-    ball = new Sprite(game, this.game.world.centerX, this.game.world.centerY, ballBitmap);
+    ball = new Ball(game, this.game.world.centerX, this.game.world.centerY, ballBitmap);
   }
 
   function update() {

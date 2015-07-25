@@ -18,6 +18,7 @@ gulp.task('html', function() {
 gulp.task('js', function() {
   return gulp.src([
       'app/js/sprite.js',
+      'app/js/paddle.js',
       'app/js/left-paddle.js',
       'app/js/right-paddle.js',
       'app/js/*.js'
