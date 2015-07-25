@@ -1,22 +1,43 @@
 
 window.onload = function() {
-  var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+  var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
-  var leftPaddle = new Paddle(game);
-  var rightPaddle = new Paddle(game);
-  var bitmap;
+  var leftPaddle;
+  var rightPaddle;
+  var ball;
 
-  function preload () {
-    bitmap = this.game.add.bitmapData(4, 40);
-    bitmap.ctx.beginPath();
-    bitmap.ctx.rect(0, 0, bitmap.width, bitmap.height);
-    bitmap.ctx.fillStyle = '#fff';
-    bitmap.ctx.fill();
+  var paddleBitmap;
+  var ballBitmap;
+  var cursors;
+
+  function preload() {
+    paddleBitmap = this.game.add.bitmapData(4, 40);
+    paddleBitmap.ctx.beginPath();
+    paddleBitmap.ctx.rect(0, 0, paddleBitmap.width, paddleBitmap.height);
+    paddleBitmap.ctx.fillStyle = '#fff';
+    paddleBitmap.ctx.fill();
+
+    ballBitmap = this.game.add.bitmapData(6, 6);
+    ballBitmap.ctx.beginPath();
+    ballBitmap.ctx.rect(0, 0, ballBitmap.width, ballBitmap.height);
+    ballBitmap.ctx.fillStyle = '#fff';
+    ballBitmap.ctx.fill();
   }
 
-  function create () {
-    leftPaddle.create(50, this.game.world.centerY, bitmap);
-    rightPaddle.create(this.game.world.width - 50, this.game.world.centerY, bitmap);
+  function create() {
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    cursors = game.input.keyboard.createCursorKeys();
+
+    leftPaddle = new Sprite(game, cursors, 50, this.game.world.centerY, paddleBitmap);
+    rightPaddle = new Sprite(game, cursors, this.game.world.width - 50, this.game.world.centerY, paddleBitmap);
+    ball = new Sprite(game, cursors, this.game.world.centerX, this.game.world.centerY, ballBitmap);
   }
 
+  function update() {
+    leftPaddle.update(ball);
+    rightPaddle.update(ball);
+
+    ball.update([leftPaddle, rightPaddle]);
+  }
 };
