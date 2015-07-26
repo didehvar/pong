@@ -19,6 +19,8 @@ window.onload = function() {
   var restart;
 
   function updateScore(score) {
+    ball.restart();
+
     if (score == 'left') {
       scoreLeft.text++;
     } else {
