@@ -33,9 +33,9 @@ class Ball extends Sprite {
     super.update(collide);
 
     if (this.sprite.body.blocked.left) {
-      this.updateScore('left');
-    } else if (this.sprite.body.blocked.right) {
       this.updateScore('right');
+    } else if (this.sprite.body.blocked.right) {
+      this.updateScore('left');
     }
   }
 }
