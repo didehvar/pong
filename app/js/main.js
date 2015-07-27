@@ -39,7 +39,7 @@ window.onload = function() {
     paddleBitmap.ctx.fillStyle = '#fff';
     paddleBitmap.ctx.fill();
 
-    ballBitmap = game.add.bitmapData(6, 6);
+    ballBitmap = game.add.bitmapData(10, 10);
     ballBitmap.ctx.beginPath();
     ballBitmap.ctx.rect(0, 0, ballBitmap.width, ballBitmap.height);
     ballBitmap.ctx.fillStyle = '#fff';

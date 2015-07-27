@@ -2,12 +2,25 @@ class RightPaddle extends Paddle {
   update(collide) {
     super.update(collide);
 
-    this.sprite.body.velocity.y = 0;
+    var paddleSize = this.sprite.height / 2;
+    var paddlePosY = this.sprite.body.position.y;
+    var ballPosY = collide.sprite.body.position.y;
 
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-      this.sprite.body.velocity.y = -Paddle.SPEED;
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-      this.sprite.body.velocity.y = Paddle.SPEED;
+    // move towards ball position
+    if (ballPosY > paddlePosY) {
+      if (this.sprite.body.velocity.y < 0) {
+        this.sprite.body.velocity.y = 0;
+      }
+
+      this.sprite.body.velocity.y += Paddle.SPEED;
+    } else if (ballPosY < paddlePosY) {
+      if (this.sprite.body.velocity.y > 0) {
+        this.sprite.body.velocity.y = 0;
+      }
+
+      this.sprite.body.velocity.y -= Paddle.SPEED;
+    } else {
+      this.sprite.body.velocity.y = 0;
     }
   }
 }

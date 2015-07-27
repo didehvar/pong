@@ -1,6 +1,6 @@
 class Paddle extends Sprite {
   static get SPEED() {
-    return 300;
+    return 50;
   }
 
   constructor(game, x, y, bitmap) {

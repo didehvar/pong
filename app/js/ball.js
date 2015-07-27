@@ -1,6 +1,6 @@
 class Ball extends Sprite {
   static get SPEED() {
-    return 500;
+    return 400;
   }
 
   constructor(game, x, y, bitmap, updateScore) {
@@ -24,7 +24,7 @@ class Ball extends Sprite {
     this.sprite.position.set(this.game.world.centerX, this.game.world.centerY);
 
     var timer = this.game.time.events.add(500, function() {
-      this.sprite.body.velocity.x = directionX > 0.5 ? Ball.SPEED : -Ball.SPEED;
+      this.sprite.body.velocity.x = Ball.SPEED;
       this.sprite.body.velocity.y = Math.random() * 400;
     }, this);
   }
